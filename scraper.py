@@ -1,3 +1,6 @@
+#Python Graphics Card Web Scraper by Daniel Kantor (2021)
+#Compatible with Newegg website
+
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
@@ -12,6 +15,8 @@ html_soup = BeautifulSoup(page_html, 'html.parser')
 filename = 'products.csv'
 f = open(filename, 'w')
 
+prominent_brands = ["NVIDIA", "ASUS", "EVGA", "MSI", "GIGABYTE", "ZOTAC", "Sapphire Tech"]
+
 headers = 'Brand, Title, Price \n'
 
 f.write(headers)
@@ -22,17 +27,16 @@ for graphics_cards in html_soup(attrs="item-container"):
     if title_get is not None:
         title = title_get.text
     else: 
-        title = "None"
+        title = "Unknown"
 
+    title_list = title.split(" ")
+    
     price_get = graphics_cards.find('li', class_="price-current")
     if price_get is not None: 
         price = price_get.text
     else:
-        price = "None"
+        price = "Unknown"
 
-    f.write(title + ',' + price + "\n")
+    f.write(title_list[0] + "," + title + ',' + price + "\n")
 
 f.close()
-
-
-
