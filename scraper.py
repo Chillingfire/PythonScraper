@@ -15,9 +15,7 @@ html_soup = BeautifulSoup(page_html, 'html.parser')
 filename = 'products.csv'
 f = open(filename, 'w')
 
-prominent_brands = ["NVIDIA", "ASUS", "EVGA", "MSI", "GIGABYTE", "ZOTAC", "Sapphire Tech"]
-
-headers = 'Brand, Title, Price \n'
+headers = 'Brand, Chipset, Title, Price \n'
 
 f.write(headers)
 
@@ -30,13 +28,20 @@ for graphics_cards in html_soup(attrs="item-container"):
         title = "Unknown"
 
     title_list = title.split(" ")
-    
+
+    array_length = len(title_list)
+
+    for i in range(array_length):
+        if title_list[i] == 'GTX' or title_list[i] == 'RTX' or title_list[i] == 'GT':
+            chipset = title_list[i] + title_list[i + 1]
+
     price_get = graphics_cards.find('li', class_="price-current")
     if price_get is not None: 
         price = price_get.text
     else:
         price = "Unknown"
 
-    f.write(title_list[0] + "," + title + ',' + price + "\n")
+
+    f.write(title_list[0] + "," + chipset + ',' + title + "," + price + "\n")
 
 f.close()
