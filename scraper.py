@@ -15,33 +15,46 @@ html_soup = BeautifulSoup(page_html, 'html.parser')
 filename = 'products.csv'
 f = open(filename, 'w')
 
-headers = 'Brand, Chipset, Title, Price \n'
+headers = 'Brand, Chipset, Price, Number of Ratings, Title \n'
 
 f.write(headers)
 
 for graphics_cards in html_soup(attrs="item-container"):
 
+    #Offical title of product
     title_get = graphics_cards.find('a', class_="item-title")
     if title_get is not None:
         title = title_get.text
+        title = title.replace(',','')
     else: 
         title = "Unknown"
 
+    #Splits offical title
     title_list = title.split(" ")
 
     array_length = len(title_list)
 
+    #Checks number of ratings
+    num_rating_get = graphics_cards.find('a', class_="item-rating")
+    if num_rating_get is not None: 
+        num_rating = num_rating_get.text
+    else:
+        num_rating = "Unknown"
+
+    #Checks chipset
     for i in range(array_length):
         if title_list[i] == 'GTX' or title_list[i] == 'RTX' or title_list[i] == 'GT':
             chipset = title_list[i] + title_list[i + 1]
 
+    #Finds price
     price_get = graphics_cards.find('li', class_="price-current")
     if price_get is not None: 
         price = price_get.text
+        price = price.replace(',','')
     else:
         price = "Unknown"
 
 
-    f.write(title_list[0] + "," + chipset + ',' + title + "," + price + "\n")
+    f.write(title_list[0] + "," + chipset + ',' + price + "," + num_rating + "," + title + "\n")
 
 f.close()
