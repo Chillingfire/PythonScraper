@@ -3,8 +3,12 @@
 
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+import csv
 
-url_scrape = "https://www.newegg.com/Desktop-Graphics-Cards/SubCategory/ID-48?Tid=7709"
+url_scrape = input("Enter Newegg website address: ")
+print("\n")
+
+#Example link: "https://www.newegg.com/Desktop-Graphics-Cards/SubCategory/ID-48?Tid=7709"
 
 request_page = urlopen(url_scrape)
 page_html = request_page.read()
@@ -41,9 +45,10 @@ for graphics_cards in html_soup(attrs="item-container"):
     else:
         num_rating = "Unknown"
 
+    chipset = ""
     #Checks chipset
     for i in range(array_length):
-        if title_list[i] == 'GTX' or title_list[i] == 'RTX' or title_list[i] == 'GT':
+        if title_list[i] == 'GTX' or title_list[i] == 'RTX' or title_list[i] == 'GT' or title_list[i] == 'RX':
             chipset = title_list[i] + title_list[i + 1]
 
     #Finds price
@@ -58,3 +63,14 @@ for graphics_cards in html_soup(attrs="item-container"):
     f.write(title_list[0] + "," + chipset + ',' + price + "," + num_rating + "," + title + "\n")
 
 f.close()
+
+with open("products.txt", "w") as my_output_file:
+    with open("products.csv", "r") as my_input_file:
+        [ my_output_file.write(" ".join(row)+'\n') for row in csv.reader(my_input_file)]
+    my_output_file.close()
+
+u = open("products.txt", "r")
+print(u.read())
+u.close()
+
+input("----------------------------------\nPress Enter to exit the program")
