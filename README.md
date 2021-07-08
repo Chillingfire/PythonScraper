@@ -1,5 +1,7 @@
 # PythonScraper
 
+<b><i>Learning Purpose of this Project:</b> To improve knowledge of developing in Python and how to use it for web-based applications.</i>
+
 <h3>Introduction</h3>
 The year is 2021. The people of the world are devoid of desktop graphics cards, and the future of humanity is on the brink of destruction...<br><br>
 I'm just kidding, I'm just trying to add a "humerous spin" to a Github readme file. However, it does provide some context to this program. In the graphics card space 
