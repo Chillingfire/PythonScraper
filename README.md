@@ -1,5 +1,6 @@
 # PythonScraper
 
+<h3>*NOT FINISHED*</h3>
 <b><i>Learning Purpose of this Project:</b> To improve knowledge of developing in Python and how to use it for web-based applications.</i>
 
 <h3>Introduction</h3>
