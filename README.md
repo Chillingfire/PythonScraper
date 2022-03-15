@@ -14,4 +14,6 @@ This is where this project comes in. The Python Scraper (patent pending) will al
 and compare prices, chipsets, brands, etc. It will solve all of your problems! <br><br>
 In all seriousness, this is just a small side project I've been working on so I could get better at using Python. This program is basically a web scraper that takes
 information from a website, and converts it into a .CSV file that you can view in something like Excel. Overall, this project is just helping me personally get familar
-with web scraping and Python (which is pretty interesting by the way). In conclusion, thanks for checking out this repo, and be sure to look at my other projects as well!
+with web scraping and Python (which is pretty interesting by the way). In conclusion, thanks for checking out this repo, and be sure to look at my other projects as well!<br><br>
+
+<i>If there is an error about "ModuleNotFoundError: No module named 'bs4'", try using this command in a command prompt or terminal: pip install BeautifulSoup4
